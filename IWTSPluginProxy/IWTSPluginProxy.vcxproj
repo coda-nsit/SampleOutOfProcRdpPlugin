@@ -64,6 +64,12 @@
       <GenerateServerFiles />
       <IgnoreStandardIncludePath />
     </Midl>
+    <PostBuildEvent>
+        <Command>xcopy /Y /D "$(TargetDir)IWTSPluginProxy.dll" "$(SolutionDir)SamplePluginMsix\"</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+        <Message>Copies the dll generated at SamplePluginModelToy\x64\Release\IWTSPluginProxy.dll to SamplePluginMsix\</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="README.md" />

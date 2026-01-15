@@ -15,8 +15,8 @@
     
     <Identity
       Name="fb3b91ad-b5a6-40ec-a2a1-d0946ecea67c"
-      Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
-      Version="1.0.36.0" />
+      Publisher="CN=ribanerjee"
+      Version="1.0.40.0" />
 
     <Properties>
         <DisplayName>SamplePluginModel</DisplayName>
@@ -66,6 +66,13 @@
                         </com:ExeServer>
                     </com:ComServer>
                 </com:Extension>
+                <com:Extension Category="windows.comInterface">
+                    <com:ComInterface>
+                        <!-- How to get Id below: https://learn.microsoft.com/en-us/windows/win32/midl/c-compiler-definitions-for-proxy-stubs -->
+                        <com:ProxyStub Id="A9FA1CF7-3024-433B-86A7-950621770265" DisplayName="IWTSPluginProxy" Path="IWTSPluginProxy.dll" />
+                        <com:Interface Id="C0C62619-3BC1-4095-9B9A-84503E37DAA5" ProxyStubClsid="A9FA1CF7-3024-433B-86A7-950621770265" />
+                    </com:ComInterface>
+                </com:Extension>
                 <uap3:Extension Category="windows.appExtension">
                     <uap3:AppExtension
                         Name="com.microsoft.rdp.plugin.wtsplugin"
@@ -75,6 +82,7 @@
                         PublicFolder="Public">
                         <uap3:Properties>
                             <ComServer>7B426A55-B731-482B-9D35-CF2A810712CB</ComServer>
+                            <InitializationDvcName>SamplePluginChannel</InitializationDvcName>
                         </uap3:Properties>
                     </uap3:AppExtension>
                 </uap3:Extension>
