@@ -2,7 +2,7 @@ import "oaidl.idl";
 import "ocidl.idl";
 import "d3d11.idl";
 
-declare_guid(CLSID_IWTSPluginProxy, A9FA1CF7-3024-433B-86A7-950621770265);
+declare_guid(CLSID_IWTSPluginProxy, A1FF7ACA-B336-4E85-8544-E28655FD7089);
 
 interface IWTSPlugin;
 interface IWTSListener;
@@ -22,7 +22,7 @@ cpp_quote("EXTERN_GUID( RDCLIENT_REMOTE_APP_WINDOW_INFO_SERVICE, 0x10d23864, 0xc
 cpp_quote("EXTERN_GUID( RDCLIENT_WINDOW_INFO_SERVICE, 0xa9a17a6b, 0xcdb3, 0x4e81, 0xb5, 0xc8, 0xbd, 0x63, 0x82, 0x2a, 0x8d, 0x6c);")
 
 //
-// Use this service GUID to retrieve RDCLIENT_WINDOW_INFO_SERVICE through
+// Use this service GUID to retrieve RDCLIENT_WINDOW_PARENT_SERVICE through
 // IWTSPluginServiceProvider::GetService
 cpp_quote("EXTERN_GUID( RDCLIENT_WINDOW_PARENT_SERVICE, 0xe6b21d8e, 0x3866, 0x47c7, 0xb3, 0xc3, 0x72, 0x72, 0xc6, 0x11, 0x3e, 0x80);")
 
