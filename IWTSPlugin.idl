@@ -525,7 +525,8 @@ typedef enum RdpContainerWindow
 {
     UIMain = 0,
     UIContainer = 1,
-    OPContainer = 2
+    OPContainer = 2,
+    IHWindow = 3
 } RdpContainerWindow;
 
 [

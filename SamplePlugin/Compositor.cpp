@@ -186,7 +186,8 @@ int Compositor::WorkerThreadMain(IStream* pStream)
     // Create the container window
     Log(L"CreateContainerWindow", CreateContainerWindow());
     Log(L"CreateCompositorWindow", CreateCompositorWindow());
-    Log(L"SetParent", pParentService->SetParent(NULL, RdpContainerWindow::OPContainer, m_compositorHwnd));
+    // Log(L"SetParent with OPContainer", pParentService->SetParent(NULL, RdpContainerWindow::OPContainer, m_compositorHwnd));
+    Log(L"SetParent with IHWindow", pParentService->SetParent(NULL, RdpContainerWindow::IHWindow, m_compositorHwnd));
 
     // Standard message loop
     MSG msg{};
