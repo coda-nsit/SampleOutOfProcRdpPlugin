@@ -26,20 +26,26 @@ IFACEMETHODIMP CToyPluginImpl::Initialize(IWTSVirtualChannelManager* pChannelMgr
 
 IFACEMETHODIMP CToyPluginImpl::Connected(void)
 {
+    Log(L"Entering CToyPluginImpl::Connected");
     _compositor.Run(_pWindowParentService);
+    Log(L"Exiting CToyPluginImpl::Connected");
     return S_OK;
 }
 
 IFACEMETHODIMP CToyPluginImpl::Disconnected(DWORD dwDisconnectCode)
 {
+    Log(L"Entering CToyPluginImpl::Disconnected");
+    Log(L"Exiting CToyPluginImpl::Disconnected");
     return S_OK;
 }
 
 IFACEMETHODIMP CToyPluginImpl::Terminated(void)
 {
+    Log(L"Entering CToyPluginImpl::Terminated");  
     _pListener->Release();
     _pWindowInfoService->Release();
     _pPluginServiceProvider->Release();
+    Log(L"Exiting CToyPluginImpl::Terminated");
     return S_OK;
 }
 
@@ -50,6 +56,7 @@ IFACEMETHODIMP CToyPluginImpl::OnNewChannelConnection(
     BOOL* pbAccept,
     IWTSVirtualChannelCallback** ppCallback)
 {
+    Log(L"Entering CToyPluginImpl::OnNewChannelConnection");
     // Assuming the connection is accepted trivialy, since, this is a toy plugin.
     *pbAccept = true;
 
@@ -57,6 +64,7 @@ IFACEMETHODIMP CToyPluginImpl::OnNewChannelConnection(
     ComPtr<IWTSVirtualChannelCallback> pVirtualChannelCallback = 
         Make<CToyPluginVirtualChannelCallbackImpl>(pChannel, _pWindowInfoService);
     pVirtualChannelCallback.CopyTo(ppCallback);
+    Log(L"Exiting CToyPluginImpl::OnNewChannelConnection");
 
     return S_OK;
 }

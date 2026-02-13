@@ -11,7 +11,7 @@ CToyPluginVirtualChannelCallbackImpl::CToyPluginVirtualChannelCallbackImpl(
 
 IFACEMETHODIMP CToyPluginVirtualChannelCallbackImpl::OnDataReceived(ULONG cbSize, BYTE* pBuffer)
 {
-
+    Log(L"Entering CToyPluginVirtualChannelCallbackImpl::OnDataReceived");
     std::string data(reinterpret_cast<char*>(pBuffer), cbSize);
     std::cout << "Plugin received: " << data << std::endl;
 
@@ -20,10 +20,13 @@ IFACEMETHODIMP CToyPluginVirtualChannelCallbackImpl::OnDataReceived(ULONG cbSize
     
     // Note: We are passing a nullptr here since, this is just a sample. In real world scenario, you should pass a valid HWND of the window which we want to track.
     _pWindowInfoService->SubscribeWindowChanged(nullptr, _pWindowChangedCallback.Get());
+    Log(L"Exiting CToyPluginVirtualChannelCallbackImpl::OnDataReceived");
     return S_OK;
 }
 
 IFACEMETHODIMP CToyPluginVirtualChannelCallbackImpl::OnClose(void)
 {
+    Log(L"Entering CToyPluginVirtualChannelCallbackImpl::OnClose"); 
+    Log(L"Exiting CToyPluginVirtualChannelCallbackImpl::OnClose");
     return S_OK;
 }
