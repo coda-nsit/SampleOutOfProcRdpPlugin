@@ -14,7 +14,7 @@ The plugin is discovered and loaded by the client application using the App Exte
 2. `SampleApplication`: This is the server (remote) side application for which the plugin is built.
 3. `SamplePlugin`: This is the plugin that is built as an msix package. This runs in the client machine and is the COM server.
 4. `SamplePluginMsix`: This is the project that packages the `SamplePlugin` as an msix package.
-5. `SamplePluginProxyStub`: Since, our plugin interfaces inherit from `IUnknown`, ole automation is not possible. So, we need to create a proxy/stub dll to do custom marshalling. This project creates the proxy/stub dll.
+5. `IWTSPluginProxy`: Since, our plugin interfaces inherit from `IUnknown`, ole automation is not possible. So, we need to create a proxy/stub dll to do custom marshalling. This project creates the proxy/stub dll (`IWTSPluginProxy.dll`).
 
 ## Building and running the solution
 1. The order in which the projects should be built has been setup already. So, just build the solution and the projects should be built in the correct order.
@@ -23,7 +23,12 @@ The plugin is discovered and loaded by the client application using the App Exte
     * "Sideloading" -> Select a self signing certificate ("Yes, use the current certificate"). 
       More details on how to create the certificate is in `README.md` of `SamplePluginMsix`. -> x64, Release (x64) -> "Create".
 3. A popup will open up which will show the location of the msix package. Install the msix package by double clicking on it.
-4. Run the client executable located at "$(SolutionDir)\x64\Release\Client.exe". This should start the Client application which should load the plugins-- a terminal console should pop up.
+4. Run the client executable located at "$(SolutionDir)\x64\Release\Client.exe". This should start the Client application which should load the plugins. The plugin no longer opens a terminal console; its logs are written to a file named `SamplePlugin_<processId>.log` inside the packaged plugin's writable `LocalState` folder.
+    * With the current package identity, the full path is:
+      `%LOCALAPPDATA%\Packages\fb3b91ad-b5a6-40ec-a2a1-d0946ecea67c_8wekyb3d8bbwe\LocalState`
+      (i.e. `C:\Users\<your-user>\AppData\Local\Packages\fb3b91ad-b5a6-40ec-a2a1-d0946ecea67c_8wekyb3d8bbwe\LocalState`).
+    * More generally the folder is `%LOCALAPPDATA%\Packages\<PackageFamilyName>\LocalState\`; if you change the package `Identity` in `Package.appxmanifest`, the `<PackageFamilyName>` segment changes accordingly. When run unpackaged, logging falls back to `%TEMP%`.
+    * To open the folder, run in PowerShell: `explorer "$env:LOCALAPPDATA\Packages\fb3b91ad-b5a6-40ec-a2a1-d0946ecea67c_8wekyb3d8bbwe\LocalState"`
 
 # Disclaimer
 1. This solution is only meant to be run with Release/x64 configuration.

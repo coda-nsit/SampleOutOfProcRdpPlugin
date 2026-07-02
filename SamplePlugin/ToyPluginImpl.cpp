@@ -10,11 +10,13 @@
 IFACEMETHODIMP CToyPluginImpl::Initialize(IWTSVirtualChannelManager* pChannelMgr)
 {
     ComPtr<IUnknown> pUnknown;
+    /*
     Log(L"QueryPluginServiceProvider", pChannelMgr->QueryInterface(IID_PPV_ARGS(&_pPluginServiceProvider)));
     Log(L"GetWindowInfoService", _pPluginServiceProvider->GetService(RDCLIENT_WINDOW_INFO_SERVICE, &pUnknown));
     Log(L"QueryWindowInfoService", pUnknown.As(&_pWindowInfoService));
     Log(L"GetWindowParentService", _pPluginServiceProvider->GetService(RDCLIENT_WINDOW_PARENT_SERVICE, &pUnknown));
     Log(L"QueryWindowParentService", pUnknown.As(&_pWindowParentService));
+    */
 
     unsigned char* pChannelName = (unsigned char*)"SamplePluginChannel";
     Log(L"Creating listener for channel SamplePluginChannel.");
@@ -26,7 +28,7 @@ IFACEMETHODIMP CToyPluginImpl::Initialize(IWTSVirtualChannelManager* pChannelMgr
 
 IFACEMETHODIMP CToyPluginImpl::Connected(void)
 {
-    _compositor.Run(_pWindowParentService);
+    // _compositor.Run(_pWindowParentService);
     return S_OK;
 }
 

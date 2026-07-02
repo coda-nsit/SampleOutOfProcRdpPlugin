@@ -1,5 +1,5 @@
 LIBRARY        
-    SamplePluginProxyStub
+    IWTSPluginProxy
 
 EXPORTS        
     DllCanUnloadNow        PRIVATE

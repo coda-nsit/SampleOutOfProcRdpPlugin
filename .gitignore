@@ -1,5 +1,6 @@
 # Prerequisites
 *.d
+.github
 
 # Compiled Object files
 *.slo

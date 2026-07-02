@@ -74,9 +74,9 @@ So, the flow then becomes,
 3️. Other applications or system components query for available extensions using the AppExtension API.
 4️. If a match is found (e.g., an RDP client looks for com.microsoft.rdp.plugin.wtsplugin), Windows loads the extension dynamically.
 
-## How is the SamplePluginProxyStub used to do marshalling and unmarshalling?
-1. The `SamplePluginProxyStub.dll` is geneated has COM classes which enable marshalling and unmarshalling. The CLSID of that COM class is `CLSID_SamplePluginProxyStub` which comes from the `IWTSPlugin.idl` file.
-2. In the `Package.appxmanifest` look for the `com:ComInterface` section which tells which COM interfaces will use the `SamplePluginProxyStub.dll` for marshalling and unmarshalling. For example, 
-   `<com:ProxyStub Id="A9FA1CF7-3024-433B-86A7-950621770265" DisplayName="SamplePluginProxyStub" Path="SamplePluginProxyStub.dll" />` says that register a proxy stub with IID `A9FA1CF7-3024-433B-86A7-950621770265` and when its invoked for marshalling and unmarshalling use the `SamplePluginProxyStub.dll`.
+## How is the IWTSPluginProxy used to do marshalling and unmarshalling?
+1. The `IWTSPluginProxy.dll` is geneated has COM classes which enable marshalling and unmarshalling. The CLSID of that COM class is `CLSID_IWTSPluginProxy` which comes from the `IWTSPlugin.idl` file.
+2. In the `Package.appxmanifest` look for the `com:ComInterface` section which tells which COM interfaces will use the `IWTSPluginProxy.dll` for marshalling and unmarshalling. For example, 
+   `<com:ProxyStub Id="A9FA1CF7-3024-433B-86A7-950621770265" DisplayName="IWTSPluginProxy" Path="IWTSPluginProxy.dll" />` says that register a proxy stub with IID `A9FA1CF7-3024-433B-86A7-950621770265` and when its invoked for marshalling and unmarshalling use the `IWTSPluginProxy.dll`.
    `<com:Interface Id="C0C62619-3BC1-4095-9B9A-84503E37DAA5" ProxyStubClsid="A9FA1CF7-3024-433B-86A7-950621770265" />` tells that use the aformentioned proxy stub when marshalling unmarshalling communication involving COM Interface with IID `C0C62619-3BC1-4095-9B9A-84503E37DAA5`
 
